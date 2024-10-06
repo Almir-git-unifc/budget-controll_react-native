@@ -1,10 +1,10 @@
-import { Link, useRouter, Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Services from '../utils/Services';
 
-export default function Home() {
+export default function Homecheckuser() {
   const router = useRouter();
 
   useEffect(() => {
@@ -13,8 +13,9 @@ export default function Home() {
 
   /** Usado para verificar se o usuário já está autenticado ou não */
   const checkUserAuth = async () => {
-    const result = await Services.getData('login');
+    const result = await Services.getData();
     if (result !== 'true') {
+      console.log('o valor de result é: ', result, 'se result não eh true vá para login');
       router.push('/login');
     }
   };
@@ -22,7 +23,7 @@ export default function Home() {
   return (
     <View>
       <Text style={styles.paragraph}>Home</Text>
-      <Text style={styles.paragraph}>Subscribe to ABS</Text>
+      <Text style={styles.paragraph}>checkUserAuth</Text>
     </View>
   );
 }
