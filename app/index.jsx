@@ -15,7 +15,7 @@ export default function Homecheckuser() {
   const checkUserAuth = async () => {
     const result = await Services.getData();
     if (result !== 'true') {
-      console.log('o valor de result é: ', result, 'se result não eh true vá para login');
+      console.log('Passagem de Storage getData temporariamente permitida');
       router.push('/login');
     }
   };
