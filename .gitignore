@@ -58,3 +58,5 @@ vite.config.js
 .wakatime-project
 *.wakatime
 .vscode/
+
+SupabaseConfig.jsx

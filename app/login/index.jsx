@@ -15,13 +15,17 @@ export default function LoginScreen() {
    */
   const handleSignIn = async () => {
     const token = await client.login();
-    console.log(token, ' valor de token');
+    console.log('valor de token antes de validar eh: ', token);
     if (token) {
-      console.log(token, ' valord e token');
+      console.log('');
+      console.log('');
+      console.log('valor de token após validar eh: ');
+      console.log(token);
+      console.log('');
       // User was authenticated
       /* await services.storeData('login', 'true'); 
       console.log(services.getData('login')); */
-      console.log('login true; AND btn Click Login-Signup; now router-repalce page-barra');
+      /////// console.log('login true; AND btn Click Login-Signup; now router-repalce page-barra');
       router.replace('/(tabs)');
     }
   };
