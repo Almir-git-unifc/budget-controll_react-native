@@ -60,3 +60,4 @@ vite.config.js
 .vscode/
 
 SupabaseConfig.jsx
+KindeConfig.jsx
