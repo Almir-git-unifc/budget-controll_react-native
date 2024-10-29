@@ -5,6 +5,9 @@ import { useEffect } from 'react';
 import {supabase} from '../../utils/SupabaseConfig';
 import { client } from '../../utils/KindeConfig';
 
+import Header from '../../components/Header';
+import Colors from '../../utils/Colors.jsx';
+
 export default function Home() {
   const router = useRouter();
 
@@ -22,8 +25,7 @@ export default function Home() {
 
   const getCategoryLyst=async()=>{
     const user=await client.getUserDetails();
-    // console.log('conteudo de user eh: ', user );
-    console.log('email do usuário eh: ', user.email);
+    console.log('email do usuário Kinde eh: ', user.email);
     const {data, error}=await supabase.from('Category')
     .select('*')
     .eq('created_by', user.email);
@@ -31,17 +33,14 @@ export default function Home() {
       console.log('Error in capture data');
     }
 
-    console.log('Dados do usuário no Supabase é: ', data);
+    console.log('Dados do usuário no Supabase: ', data);
     console.log('');
 
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>INIT PAGE Versão 7</Text>
-      <Text style={styles.paragraph}>Se inscreva no Gurugi</Text>
-      <Text style={styles.paragraph}>Você foi aprovado no login</Text>
-      <Button title="Quer sair ou Logout?" onPress={handleLogout} />
+      <Header />
     </View>
   );
 }
@@ -49,6 +48,9 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
+    padding: 20,
+    backgroundColor:Colors.PRIMARY,
+    height:150
   },
   paragraph: {
     margin: 15,
