@@ -8,6 +8,9 @@ Installed
 - npm install expo-crypto
 - npm install expo-auth-session
 - npm install @supabase/supabase-js
+- npm install react-native-svg  (for graphic pie)
+- npm install react-native-pie-chart (for graphic pie)
+
 
 - npx expo install @react-native-async-storage/async-storage   
  (ainda não sabemos se será usado - we will study whether it will be used)

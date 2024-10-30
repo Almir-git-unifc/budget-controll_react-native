@@ -13,16 +13,18 @@ export default function Header() {
         getUserData();
     })
 
+    /** Usado para capturar dados do usuário do */
     const getUserData = async () => {
         const user = await client.getUserDetails();
         setUser(user);
     }
 
     return (
-        <View style={styles.stylaligntext}  >
-
-            <Image source={require('../assets/images/abs_545904.png')} style={styles.loginBg} />
-
+        <View style={styles.stylaligntext}  >            
+            <Image
+                source={user?.picture ? { uri: user.picture } : require('../assets/images/abs_545904.png')}
+                style={styles.loginBg}
+            />
             <View style={styles.stylaligwelconotico}  >
                 <View>
                     <Text style={styles.styltxtheader} >Welcome,</Text>

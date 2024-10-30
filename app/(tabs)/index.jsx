@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import {supabase} from '../../utils/SupabaseConfig';
 import { client } from '../../utils/KindeConfig';
 
-import Header from '../../components/Header';
+import Header     from '../../components/Header';
+import DonutChart from '../../components/DonutChart';
 import Colors from '../../utils/Colors.jsx';
 
 export default function Home() {
@@ -41,6 +42,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Header />
+      <DonutChart />
     </View>
   );
 }
