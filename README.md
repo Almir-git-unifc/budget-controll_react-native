@@ -1,3 +1,25 @@
+h1>Titulo Provisório: Input field: Soma campos, percorrendo o array</h1>
+
+
+Description: Soma total de campos ionputfield em tempo real
+
+---------------------------------------------------------------------------------------------------------
+
+ 
+<h3 align="center"> 
+     STATUS: 🚧  React VITE 🚀 App under construction ...  🚧 
+</h3>
+
+
+                     ==================================================
+                      
+
+--------------------------------------------------------------------------------------
+
+About
+App budge control using react, expo-router and Supabase
+
+
 used
 - exporouter    used to navigation
 -

@@ -5,6 +5,8 @@ import { client } from '../utils/KindeConfig';
 import Colors from '../utils/Colors.jsx';
 import { Ionicons } from '@expo/vector-icons';
 
+import { useFonts } from 'expo-font';
+
 
 export default function Header() {
     const [user, setUser] = useState();
@@ -45,11 +47,12 @@ const styles = StyleSheet.create({
     styltxtheader: {
         color: Colors.WHITE,
         fontSize: 16,
+        fontFamily:'nunito',
     },
     styluserheader: {
         color: Colors.WHITE,
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily:'nunito-bold',
     },
     stylaligwelconotico: {
         display: 'flex',

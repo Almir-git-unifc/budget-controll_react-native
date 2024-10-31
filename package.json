@@ -42,7 +42,8 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "^15.8.0",
     "react-native-web": "~0.19.10",
-    "readable-stream": "^4.5.2"
+    "readable-stream": "^4.5.2",
+    "expo-font": "~12.0.10"
   },
   "devDependencies": {
     "-": "^0.0.1",
