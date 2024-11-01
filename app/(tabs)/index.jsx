@@ -2,19 +2,21 @@ import { useRouter } from 'expo-router';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { useEffect } from 'react';
 
-import {supabase} from '../../utils/SupabaseConfig';
+import { supabase } from '../../utils/SupabaseConfig';
 import { client } from '../../utils/KindeConfig';
 
-import Header     from '../../components/Header';
+import Header from '../../components/Header';
 import DonutChart from '../../components/DonutChart';
 import Colors from '../../utils/Colors.jsx';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Home() {
   const router = useRouter();
 
-  useEffect( ()=>{
+  useEffect(() => {
     getCategoryLyst();
-  },[]);
+  }, []);
 
   const handleLogout = async () => {
     const loggedOut = await client.logout();
@@ -24,13 +26,13 @@ export default function Home() {
     }
   };
 
-  const getCategoryLyst=async()=>{
-    const user=await client.getUserDetails();
+  const getCategoryLyst = async () => {
+    const user = await client.getUserDetails();
     console.log('email do usuário Kinde eh: ', user.email);
-    const {data, error}=await supabase.from('Category')
-    .select('*')
-    .eq('created_by', user.email);
-    if(error){
+    const { data, error } = await supabase.from('Category')
+      .select('*')
+      .eq('created_by', user.email);
+    if (error) {
       console.log('Error in capture data');
     }
 
@@ -40,19 +42,29 @@ export default function Home() {
   }
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <DonutChart />
+    <View style={styles.gera}>
+      <View style={styles.container}>
+        <Header />
+        <DonutChart />
+      </View>
+
+      <View style={styles.btnaddcateg}>
+        <Ionicons name="add-circle" size={54} color={Colors.PRIMARY} />
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  gera: {
     marginTop: 30,
+    flex: 1
+    },  
+  container: {
     padding: 20,
-    backgroundColor:Colors.PRIMARY,
-    height:150
+    backgroundColor: Colors.PRIMARY,
+    height: 150
   },
   paragraph: {
     margin: 15,
@@ -60,4 +72,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  btnaddcateg: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
+    },  
 });
