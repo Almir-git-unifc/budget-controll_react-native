@@ -9,6 +9,7 @@ v00.07.000 - Made donut graphic using react-native-pie-chart
 v00.08.000 - Changed the font to a Google fonts type
 v00.09.000 - Add button - New Category
 v00.10.000 - Add Page - New Category
+v00.11.000 - Add selector color in ColorPicker component
 
 
 
