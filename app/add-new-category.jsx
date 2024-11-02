@@ -1,17 +1,40 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
+import Colors from '../utils/Colors';
+import ColorPicker from '../components/ColorPicker';
 
-export default function AddNewCategory(){
+export default function AddNewCategory() {
+
+  const [selectedIcon, setSelectedIcon] = useState('IC');
+  const [selectedColor, setSelectedColor] = useState(Colors.PRIMARY);
+
   return (
-    <View >
-      <Text  style={styles.catego} >add-new-category</Text>
+    <View style={styles.viewhover}>
+      <View style={styles.inputview}>
+        <TextInput style={[styles.iconInput, { backgroundColor: selectedColor }]} maxLength={2} >
+          {selectedIcon}
+        </TextInput>
+        <ColorPicker/>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  catego: {
-    marginTop: 50,
-    marginLeft: 10,
-    }
+  viewhover: {
+    marginTop: 20,
+    padding: 20,
+  },
+  iconInput: {
+    textAlign: 'center',
+    fontSize: 30,
+    padding: 20,
+    paddingHorizontal: 28,
+    borderRadius: 99,
+    color: Colors.WHITE,
+  },
+  inputview:{
+    justifyContent:'center',
+    alignItems: 'center',
+  }
 });
