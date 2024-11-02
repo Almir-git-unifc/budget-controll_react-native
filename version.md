@@ -7,4 +7,11 @@ v00.05.000 - Supabase implementation & config supabase.com plataform; and captur
 v00.06.000 - Made the header design
 v00.07.000 - Made donut graphic using react-native-pie-chart
 v00.08.000 - Changed the font to a Google fonts type
+v00.09.000 - Add button - New Category
+v00.10.000 - Add Page - New Category
 
+
+
+FALTA INSTALAR
+- WAKATIME
+- NOTAS DO VS CODE

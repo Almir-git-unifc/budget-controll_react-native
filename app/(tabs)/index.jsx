@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { useEffect } from 'react';
 
@@ -48,9 +48,9 @@ export default function Home() {
         <DonutChart />
       </View>
 
-      <View style={styles.btnaddcateg}>
+      <Link href={'/add-new-category'} style={styles.btnaddcateg}>
         <Ionicons name="add-circle" size={54} color={Colors.PRIMARY} />
-      </View>
+      </Link>
 
     </View>
   );
