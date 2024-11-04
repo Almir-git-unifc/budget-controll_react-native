@@ -6,7 +6,13 @@ import ColorPicker from '../components/ColorPicker';
 export default function AddNewCategory() {
 
   const [selectedIcon, setSelectedIcon] = useState('IC');
-  const [selectedColor, setSelectedColor] = useState(Colors.PRIMARY);
+  const [selectedColor, setSelectedColor] = useState(Colors.PURPLE);
+
+
+  const handleColorChange = (newColor) => {
+    setSelectedColor(newColor);
+  };
+
 
   return (
     <View style={styles.viewhover}>
@@ -14,7 +20,7 @@ export default function AddNewCategory() {
         <TextInput style={[styles.iconInput, { backgroundColor: selectedColor }]} maxLength={2} >
           {selectedIcon}
         </TextInput>
-        <ColorPicker/>
+  	    <ColorPicker onColorChange={handleColorChange} />
       </View>
     </View>
   )
