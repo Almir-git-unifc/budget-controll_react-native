@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function ColorPicker({onColorChange}) {
 
-    const [selectedColor, setSelectedColor] = useState('#FF555D');
+    const [selectedColor, setSelectedColor] = useState('#9F3CFE');
 
     const handleColorPress = (color) => {
         setSelectedColor(color);
