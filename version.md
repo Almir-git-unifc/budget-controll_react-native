@@ -11,8 +11,11 @@ v00.09.000 - Add button - New Category
 v00.10.000 - Add Page - New Category
 v00.11.000 - Add selector color in ColorPicker component
 v00.12.000 - update backgroundColor in ColorPicker component
+v00.13.000 - update screen from add-new-category.jsx file
+v00.14.000 - send data to supabase"
+
+
 
 
 FALTA INSTALAR
-- WAKATIME
 - NOTAS DO VS CODE
