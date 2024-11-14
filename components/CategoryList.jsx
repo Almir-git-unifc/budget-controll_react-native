@@ -1,7 +1,18 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../utils/Colors';
+import { useRouter } from 'expo-router';
 
 export default function CategoryList({ categoryList }) {
+
+  const router=useRouter();
+  const onCategoryClick=(category) => {
+    router.push({
+       pathname: '/category-detail',
+       params: {categoryId:category.id}
+    })
+ }
+
+
   return (
     <View style={styles.viewcateglis}>
       <Text style={styles.txtcateglist}>Latest Budget</Text>
@@ -10,7 +21,10 @@ export default function CategoryList({ categoryList }) {
       {categoryList && categoryList.length > 0 ? ( // Check if categoryList is not undefined and has items
         <View>
           {categoryList.map((category, index) => (
-            <View key={index} style={styles.contgercateglist}>
+            <TouchableOpacity
+              key={index}
+              style={styles.contgercateglist}
+              onPress={() => onCategoryClick(category)}>
               <View style={styles.icoContainer}>
                 <Text style={[styles.icodetailcatlist, { backgroundColor: category?.color }]}>
                   {category.icon}
@@ -18,14 +32,13 @@ export default function CategoryList({ categoryList }) {
               </View>
 
               <View style={styles.subContainer}>
-                  <View>
-                      <Text style={styles.categoryText}>{category.name}</Text>
-                      <Text style={styles.itemCount}>{category?.CategoryItems?.length} Itens</Text>
-                  </View>
-                  <Text style={styles.txtotalgeneral}>$5000</Text>
+                <View>
+                  <Text style={styles.categoryText}>{category.name}</Text>
+                  <Text style={styles.itemCount}>{category?.CategoryItems?.length} Itens</Text>
+                </View>
+                <Text style={styles.txtotalgeneral}>${category.assigned_budget}</Text>
               </View>
-              
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       ) : (
@@ -37,12 +50,12 @@ export default function CategoryList({ categoryList }) {
 const styles = StyleSheet.create({
   contgercateglist: {
     marginBottom: 10,
-    display:'flex',
+    display: 'flex',
     flexDirection: 'row',
     gap: 10,
     alignItems: 'center',
     backgroundColor: Colors.WHITE,
-    padding: 10, 
+    padding: 10,
     borderRadius: 15,
   },
   viewcateglis: {
@@ -68,10 +81,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   itemCount: {
-    fontWeight: 'normal'
+    fontWeight: 'normal',
   },
   subContainer: {
-    display:'flex',
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

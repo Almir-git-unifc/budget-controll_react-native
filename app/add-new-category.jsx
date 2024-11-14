@@ -6,8 +6,11 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { supabase } from '../utils/SupabaseConfig';
 import { client } from '../utils/KindeConfig';
+import { useRouter } from 'expo-router';
 
 export default function AddNewCategory() {
+
+  const router=useRouter();
   const [selectedIcon, setSelectedIcon] = useState('IC');
   const [selectedColor, setSelectedColor] = useState(Colors.PURPLE);
 
@@ -26,21 +29,24 @@ export default function AddNewCategory() {
       .from('Category')
       .insert([
         {
-          name: 'categoryName',
+          name: categoryName,
           assigned_budget: totalBudget,
-          icon:selectedIcon,
-          color:selectedColor,
+          icon: selectedIcon,
+          color: selectedColor,
           created_by: user.email,
         },
       ])
       .select();
-      console.log('Dados da tabela do Supabase é: ', data);
+    console.log('Dados da tabela do Supabase é: ', data);
 
     if (data) {
+      router.replace({
+        pathname: '/category-detail',
+        params: {categoryId:data[0].id}
+     })
       ToastAndroid.show('Category Created!', ToastAndroid.SHORT);
       console.log(data);
-    }
-    else{
+    } else {
       console.log('Erro na obtenção dos dados');
     }
   };
@@ -76,11 +82,10 @@ export default function AddNewCategory() {
           style={{ width: '100%', fontSize: 17 }}
         />
       </View>
-      <TouchableOpacity 
-        style={styles.btntouchableaddcateg} 
+      <TouchableOpacity
+        style={styles.btntouchableaddcateg}
         disable={!categoryName || !totalBudget}
-        onPress={() => onCreatedCategory()}
-      >
+        onPress={() => onCreatedCategory()}>
         <Text style={styles.txtlablebtncate}>Create</Text>
       </TouchableOpacity>
     </View>

@@ -1,5 +1,6 @@
 import { Link, useRouter } from 'expo-router';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView } from 'react-native';
+import { RefreshControl } from 'react-native';
 import { useEffect, useState } from 'react';
 
 import { supabase } from '../../utils/SupabaseConfig';
@@ -15,8 +16,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Home() {
   const router = useRouter();
-
   const [categoryList, setCategoryList] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getCategoryLyst();
@@ -31,6 +32,7 @@ export default function Home() {
   };
 
   const getCategoryLyst = async () => {
+    setLoading(true);
     const user = await client.getUserDetails();
     console.log('email do usuário Kinde eh: ', user.email);
     const { data, error } = await supabase
@@ -46,26 +48,35 @@ export default function Home() {
     console.log('');
     setCategoryList(data);
 
-    console.log('Dados do usuário no Supabase: ', data);
+    data && setLoading(false);
     console.log('');
   };
 
   return (
     <View style={styles.gera}>
-      <View style={styles.container}>
-        <Header />
-        <DonutChart />
-
-        <View>
-          {/* ... */}
-          {categoryList ? ( // Check if categoryList is not undefined
-            <CategoryList categoryList={categoryList} />
-          ) : (
-            <Text>Loading categories...</Text>
-          )}
-          {/* ... */}
+      <ScrollView
+        refreshControl={
+          <RefreshControl onRefresh={() => getCategoryLyst()} 
+          refreshing={loading} />
+        }>
+        <View style={styles.container}>
+          <Header />
         </View>
-      </View>
+
+        <View style={styles.graphcatlist}>
+          <DonutChart />
+
+          <View>
+            {/* ... */}
+            {categoryList ? ( // Check if categoryList is not undefined
+              <CategoryList categoryList={categoryList} />
+            ) : (
+              <Text>Loading categories...</Text>
+            )}
+            {/* ... */}
+          </View>
+        </View>
+      </ScrollView>
 
       <Link href={'/add-new-category'} style={styles.btnaddcateg}>
         <Ionicons name="add-circle" size={54} color={Colors.PRIMARY} />
@@ -78,6 +89,10 @@ const styles = StyleSheet.create({
   gera: {
     marginTop: 30,
     flex: 1,
+  },
+  graphcatlist: {
+    padding: 20,
+    marginTop: -75,
   },
   container: {
     padding: 20,
