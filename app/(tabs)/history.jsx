@@ -10,6 +10,7 @@ export default function History() {
 const styles = StyleSheet.create({
   loginScreen: {
     margin: 20,
+    marginTop: 40,
     fontSize: 14,
   },
 });

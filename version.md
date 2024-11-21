@@ -21,3 +21,7 @@ v00.16.000 - Sent data to DB, opens empty category-detail, shows ID in console
 
 FALTA INSTALAR
 - NOTAS DO VS CODE
+
+
+Usado ICONE lupa comod default
+https://br.freepik.com/icone/procurar_11868278#fromView=resource_detail&position=9 
