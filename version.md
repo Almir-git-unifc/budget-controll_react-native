@@ -15,6 +15,8 @@ v00.13.000 - update screen from add-new-category.jsx file
 v00.14.000 - send data to supabase
 v00.15.000 - create CategoryList.jsx Page
 v00.16.000 - Sent data to DB, opens empty category-detail, shows ID in console
+v00.17.000 - Page with product details and progress bar
+v00.18.000 - displayed items from each group
 
 
 
@@ -23,5 +25,25 @@ FALTA INSTALAR
 - NOTAS DO VS CODE
 
 
-Usado ICONE lupa comod default
-https://br.freepik.com/icone/procurar_11868278#fromView=resource_detail&position=9 
+Usado ICONE lupa como default
+https://br.freepik.com/icone/procurar_11868278#fromView=resource_detail&position=9
+
+Image details:
+https://fastly.picsum.photos/id/1068/5000/2873.jpg?hmac=r6kq62tWoTv9EdoHeHjw8wxTwhJNEfZEcwRMxWSkelY
+
+https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc
+
+
+
+Fonte aula: https://www.youtube.com/watch?v=bpP7PKuEjgI
+
+Fonte consulta e apoio: https://github.com/rrs301/budget-planner-react-native-app
+
+
+Study of Description:
+Expense tracker built with React Native Expo  49
+Android app that helps you to easily track your expenses 32
+
+
+Framework: Expo 51
+Database: Supabase

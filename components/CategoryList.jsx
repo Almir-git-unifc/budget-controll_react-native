@@ -42,7 +42,9 @@ export default function CategoryList({ categoryList }) {
           ))}
         </View>
       ) : (
-        <Text>No categories found.</Text>
+        <View>
+             <Text>No categories found</Text>
+        </View>
       )}
     </View>
   );
@@ -86,8 +88,8 @@ const styles = StyleSheet.create({
   subContainer: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',    
     alignItems: 'center',
-    justifyContent: 'space-between',
     width: '70%',
   },
   txtotalgeneral: {

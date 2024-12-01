@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import { supabase } from '../utils/SupabaseConfig';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import CourseInfo from '../components/CourseDetail/CourseInfo';
+import CourseInfo from     '../components/CourseDetail/CourseInfo';
+import CourseItemList from '../components/CourseDetail/CourseItemList';
 import { useRouter } from 'expo-router';
 
 export default function CategoryDetails() {
@@ -12,7 +13,7 @@ export default function CategoryDetails() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('O ID obtido de categoryId eh: ', categoryId);
+    console.log('\nO ID obtido de categoryId eh: ', categoryId);
     categoryId && getCategoryDetail();
   }, [categoryId]);
 
@@ -22,7 +23,7 @@ export default function CategoryDetails() {
       .select('*,CategoryItems(*)')
       .eq('id', categoryId);
     setCategoryData(data[0]);
-    console.log('\n Dados do supabase obtidos na página CategoryDetails: ', categoryData, '\n');
+    console.log('Dados do supabase obtidos na página CategoryDetails: ', categoryData, '\n');
   };
 
   return (
@@ -31,6 +32,7 @@ export default function CategoryDetails() {
         <Ionicons name="arrow-back-circle" size={44} color="black" />
       </TouchableOpacity>
       <CourseInfo categoryData={categoryData} />
+      <CourseItemList categoryData={categoryData} />
     </View>
   );
 }

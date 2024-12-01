@@ -5,25 +5,35 @@ import Colors from '../../utils/Colors';
 
 export default function CourseInfo({ categoryData }) {
 
-  const[totalCost, setTotalCost]= useState();
+  const[totalCost, setTotalCost]= useState(0);
   const[percent, setPercent]= useState(0);
+  const[nomem, setNomem]= useState('');
+  const[imag, setImag]= useState('');
 
 
   useEffect( ()=>{
-    categoryData&&calculateTotalPerc();
-  },[categoryData] )
+    categoryData.assigned_budget&&calculateTotalPerc();
+  },[categoryData, totalCost, percent] )
 
   const calculateTotalPerc=()=>{
 
     let totalgast=0;
     categoryData?.CategoryItems?.forEach(item=>{
       totalgast = totalgast + item.cost;
+      setTotalCost(totalgast);
+      setNomem(item.name);
+      setImag(item.image);
+
+      const calcPercent = totalCost / categoryData.assigned_budget * 100;
+      setPercent(calcPercent);
     });
-    setTotalCost(totalgast);
-    const calcPercent = (totalgast/categoryData.assigned_budget) * 100;
-    setPercent(calcPercent);
-    console.log("Valor total consumido eh: ", totalgast);
-    console.log("Valor percentagem consumida eh: ", percent);
+    console.log("O arquivo CourseInfo.jsx pegou o nome do grupo que eh: ",categoryData.name )
+    console.log("O arquivo CourseInfo.jsx pegou Valor assigned_budget capturado do supabase eh: ",categoryData.assigned_budget )
+    console.log("O arquivo CourseInfo.jsx pegou Valor totalCost consumido eh: ", totalCost);
+    console.log("O arquivo CourseInfo.jsx calculou percentagem consumida: ", percent), '\n';
+    console.log("O arquivo CourseInfo.jsx pegou nome deste item no DataBase: ", nomem, '\n'), '\n';
+    console.log("O arquivo CourseInfo.jsx pegou a imagem deste item no DataBase: ", imag, '\n'), '\n';
+    console.log('');
   }
 
   return (
@@ -66,7 +76,7 @@ const styles = StyleSheet.create({
   },
   iconcatedetail: {
     padding: 20,
-    fontSize: 25,
+    fontSize: 35,
     borderRadius: 15,
   },
   txtvaltotalicon: {
