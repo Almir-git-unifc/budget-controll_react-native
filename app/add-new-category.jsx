@@ -23,7 +23,7 @@ export default function AddNewCategory() {
 
   const onCreatedCategory = async () => {
     const user = await client.getUserDetails();
-    console.log('email do usuário Kinde eh: ', user.email);
+    console.log('\n email do usuário Kinde eh: ', user.email);
 
     const { data, error } = await supabase
       .from('Category')
