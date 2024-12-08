@@ -15,7 +15,7 @@ export default function CategoryList({ categoryList }) {
 
   return (
     <View style={styles.viewcateglis}>
-      <Text style={styles.txtcateglist}>Latest Budget</Text>
+      <Text style={styles.txtcateglist}>Category Budget</Text>
 
       {/* Trecho modificado */}
       {categoryList && categoryList.length > 0 ? ( // Check if categoryList is not undefined and has items
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   txtcateglist: {
-    // fontfamily:'nunito-bold',
     fontSize: 25,
     marginBottom: 10,
     fontWeight: 'bold',

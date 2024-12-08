@@ -47,12 +47,11 @@ const styles = StyleSheet.create({
     styltxtheader: {
         color: Colors.WHITE,
         fontSize: 16,
-        fontFamily:'nunito',
     },
     styluserheader: {
         color: Colors.WHITE,
         fontSize: 20,
-        fontFamily:'nunito-bold',
+        fontWeight: 'bold',
     },
     stylaligwelconotico: {
         display: 'flex',
