@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import { supabase } from '../utils/SupabaseConfig';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import CourseInfo from     '../components/CourseDetail/CourseInfo';
+import CourseInfo from '../components/CourseDetail/CourseInfo';
 import CourseItemList from '../components/CourseDetail/CourseItemList';
-import { useRouter } from 'expo-router';
+import Colors from '../utils/Colors';
+import { Link, useRouter } from 'expo-router';
 
 export default function CategoryDetails() {
   const { categoryId } = useLocalSearchParams();
@@ -33,6 +34,18 @@ export default function CategoryDetails() {
       </TouchableOpacity>
       <CourseInfo categoryData={categoryData} />
       <CourseItemList categoryData={categoryData} />
+
+      <Link
+        href={{
+          pathname: '/add-new-category-item',
+          params: {
+            categoryId: categoryData.id,
+          },
+        }}
+        style={styles.btnaddfloat}
+      >
+        <Ionicons name="add-circle" size={60} color={Colors.PRIMARY} />
+      </Link>
     </View>
   );
 }
@@ -40,10 +53,17 @@ const styles = StyleSheet.create({
   viewcatedetail: {
     marginTop: 20,
     padding: 20,
+    flex: 1,
+    backgroundColor: Colors.WHITE,
   },
   iconcatedetail: {
     marginTop: 10,
     padding: 10,
     fontSize: 20,
+  },
+  btnaddfloat: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
   },
 });
