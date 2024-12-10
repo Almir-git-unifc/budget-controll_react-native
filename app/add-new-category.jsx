@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, TextInput, StyleSheet, Text, TouchableOpacity, ToastAndroid } from 'react-native';
+import { View, TextInput, StyleSheet, Text, TouchableOpacity, ToastAndroid,
+  ActivityIndicator } from 'react-native';
 import Colors from '../utils/Colors';
 import ColorPicker from '../components/ColorPicker';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -9,19 +10,22 @@ import { client } from '../utils/KindeConfig';
 import { useRouter } from 'expo-router';
 
 export default function AddNewCategory() {
-
-  const router=useRouter();
   const [selectedIcon, setSelectedIcon] = useState('IC');
   const [selectedColor, setSelectedColor] = useState(Colors.PURPLE);
 
   const [categoryName, setCategoryName] = useState();
   const [totalBudget, setTotalBudget] = useState();
 
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
   const handleColorChange = (newColor) => {
     setSelectedColor(newColor);
   };
 
   const onCreatedCategory = async () => {
+    setLoading(true);
     const user = await client.getUserDetails();
     console.log('\n email do usuário Kinde eh: ', user.email);
 
@@ -42,11 +46,14 @@ export default function AddNewCategory() {
     if (data) {
       router.replace({
         pathname: '/category-detail',
-        params: {categoryId:data[0].id}
-     })
+        params: { categoryId: data[0].id },
+      });
+      setLoading(false);
       ToastAndroid.show('Category Created!', ToastAndroid.SHORT);
       console.log(data);
-    } else {
+    }
+    if (error) {
+      setLoading(false);
       console.log('Erro na obtenção dos dados');
     }
   };
@@ -84,9 +91,14 @@ export default function AddNewCategory() {
       </View>
       <TouchableOpacity
         style={styles.btntouchableaddcateg}
-        disable={!categoryName || !totalBudget}
-        onPress={() => onCreatedCategory()}>
-        <Text style={styles.txtlablebtncate}>Create</Text>
+        disable={!categoryName || !totalBudget || loading}
+        onPress={() => onCreatedCategory()}
+      >
+        {loading ? (
+          <ActivityIndicator color={Colors.WHITE} />
+        ) : (
+          <Text style={styles.txtlablebtncate}>Create</Text>
+        )}
       </TouchableOpacity>
     </View>
   );

@@ -24,15 +24,18 @@ export default function CourseInfo({ categoryData }) {
       setNomem(item.name);
       setImag(item.image);
 
-      const calcPercent = totalCost / categoryData.assigned_budget * 100;
+      let calcPercent = totalCost / categoryData.assigned_budget * 100;
+      if(calcPercent>100){
+        calcPercent=100;
+      }
       setPercent(calcPercent);
     });
-    console.log("O arquivo CourseInfo.jsx pegou o nome do grupo que eh: ",categoryData.name )
-    console.log("O arquivo CourseInfo.jsx pegou Valor assigned_budget capturado do supabase eh: ",categoryData.assigned_budget )
+    console.log("O arquivo CourseInfo.jsx pegou o nome do grupo que eh: ",categoryData.name );
+    console.log("O arquivo CourseInfo.jsx pegou Valor assigned_budget capturado do supabase eh: ",categoryData.assigned_budget );
     console.log("O arquivo CourseInfo.jsx pegou Valor totalCost consumido eh: ", totalCost);
-    console.log("O arquivo CourseInfo.jsx calculou percentagem consumida: ", percent), '\n';
-    console.log("O arquivo CourseInfo.jsx pegou nome deste item no DataBase: ", nomem, '\n'), '\n';
-    console.log("O arquivo CourseInfo.jsx pegou a imagem deste item no DataBase: ", imag, '\n'), '\n';
+    console.log("O arquivo CourseInfo.jsx calculou percentagem consumida: ", percent);
+    console.log("O arquivo CourseInfo.jsx pegou nome deste item no DataBase: ");
+    console.log( imag, '\n'),
     console.log('');
   }
 
@@ -52,7 +55,7 @@ export default function CourseInfo({ categoryData }) {
       </View>
 
       <View style={styles.txttotal}>
-        <Text style={styles.txtfontvaluescost}>${totalCost}</Text>
+        <Text style={[{fontSize: 14, fontWeight: 'bold',}, { color: percent >= 100 ? Colors.RED : Colors.BLACK     }]} >${totalCost}</Text>
         <Text style={styles.txtfontvalues}>Total Budget:{categoryData.assigned_budget}</Text>
       </View>
       <View style={styles.progressbarmaincontainer}>

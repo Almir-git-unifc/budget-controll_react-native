@@ -1,5 +1,5 @@
-import { View,Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, ToastAndroid
-} from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, ScrollView,
+  KeyboardAvoidingView, ToastAndroid, ActivityIndicator } from 'react-native';
 import Colors from '../utils/Colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -21,7 +21,8 @@ export default function AddNewCategoryItem() {
   const [cost, setCost] = useState();
   const [url, setUrl] = useState();
   const [note, setNote] = useState();
-  const router= useRouter();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onImagePick = async () => {
     // No permissions request is necessary for launching the image library
@@ -42,11 +43,11 @@ export default function AddNewCategoryItem() {
   };
 
   const onClickAdd = async () => {
+    setLoading(true);
     console.log('inicio botão AddItem de add-new-category-item.jsx');
     console.log('');
     const fileName = Date.now();
-    const { data, error } = await supabase
-      .storage
+    const { data, error } = await supabase.storage
       .from('images')
       .upload(fileName + '.png', decode(image), {
         contentType: 'image/png',
@@ -54,7 +55,9 @@ export default function AddNewCategoryItem() {
 
     if (data) {
       const fileUrl =
-        'https://xojgrrzyxnarswqcpebq.supabase.co/storage/v1/object/public/images/' + fileName + ".png";
+        'https://xojgrrzyxnarswqcpebq.supabase.co/storage/v1/object/public/images/' +
+        fileName +
+        '.png';
       console.log('File Upload - 00.43h - na linha 55, dados recebidos eh: ', data, error);
       console.log('');
       console.log('File Upload em: ');
@@ -80,11 +83,11 @@ export default function AddNewCategoryItem() {
 
       console.log(data);
 
+      setLoading(false);
       router.replace({
         pathname: '/category-detail',
         params: { categoryId: categoryId },
       });
-      
     }
   };
 
@@ -135,9 +138,14 @@ export default function AddNewCategoryItem() {
 
         <TouchableOpacity
           style={styles.btnadditem}
-          disabled={!name || !cost}
+          disabled={!name || !cost || loading}
           onPress={() => onClickAdd()}>
-          <Text style={styles.txtlbladditem}>AddItem</Text>
+          {
+            loading ? 
+            <ActivityIndicator color={Colors.WHITE} /> 
+            : 
+            <Text style={styles.txtlbladditem}>AddItem</Text>
+          }
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
