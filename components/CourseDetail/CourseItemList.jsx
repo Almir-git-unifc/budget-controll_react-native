@@ -1,13 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ToastAndroid,
-  Linking,
-  Image,
-  ScrollView,
-} from 'react-native';
+import { View,Text, StyleSheet, TouchableOpacity, ToastAndroid, Linking, Image, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Colors from '../../utils/Colors';
 import { EvilIcons } from '@expo/vector-icons';

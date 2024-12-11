@@ -1,43 +1,70 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ToastAndroid, Alert } from 'react-native';
+import { supabase } from '../../utils/SupabaseConfig';
+import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Colors from '../../utils/Colors';
 
 export default function CourseInfo({ categoryData }) {
+  const [totalCost, setTotalCost] = useState(0);
+  const [percent, setPercent] = useState(0);
+  const [nomem, setNomem] = useState('');
+  const [imag, setImag] = useState('');
+  const router = useRouter();
 
-  const[totalCost, setTotalCost]= useState(0);
-  const[percent, setPercent]= useState(0);
-  const[nomem, setNomem]= useState('');
-  const[imag, setImag]= useState('');
+  useEffect(() => {
+    categoryData.assigned_budget && calculateTotalPerc();
+  }, [categoryData, totalCost, percent]);
 
-
-  useEffect( ()=>{
-    categoryData.assigned_budget&&calculateTotalPerc();
-  },[categoryData, totalCost, percent] )
-
-  const calculateTotalPerc=()=>{
-
-    let totalgast=0;
-    categoryData?.CategoryItems?.forEach(item=>{
+  const calculateTotalPerc = () => {
+    let totalgast = 0;
+    categoryData?.CategoryItems?.forEach((item) => {
       totalgast = totalgast + item.cost;
       setTotalCost(totalgast);
       setNomem(item.name);
       setImag(item.image);
 
-      let calcPercent = totalCost / categoryData.assigned_budget * 100;
-      if(calcPercent>100){
-        calcPercent=100;
+      let calcPercent = (totalCost / categoryData.assigned_budget) * 100;
+      if (calcPercent > 100) {
+        calcPercent = 100;
       }
       setPercent(calcPercent);
     });
-    console.log("O arquivo CourseInfo.jsx pegou o nome do grupo que eh: ",categoryData.name );
-    console.log("O arquivo CourseInfo.jsx pegou Valor assigned_budget capturado do supabase eh: ",categoryData.assigned_budget );
-    console.log("O arquivo CourseInfo.jsx pegou Valor totalCost consumido eh: ", totalCost);
-    console.log("O arquivo CourseInfo.jsx calculou percentagem consumida: ", percent);
-    console.log("O arquivo CourseInfo.jsx pegou nome deste item no DataBase: ");
-    console.log( imag, '\n'),
-    console.log('');
-  }
+    console.log('O arquivo CourseInfo.jsx pegou o nome do grupo que eh: ', categoryData.name);
+    console.log(
+      'O arquivo CourseInfo.jsx pegou Valor assigned_budget capturado do supabase eh: ',
+      categoryData.assigned_budget
+    );
+    console.log('O arquivo CourseInfo.jsx pegou Valor totalCost consumido eh: ', totalCost);
+    console.log('O arquivo CourseInfo.jsx calculou percentagem consumida: ', percent);
+    console.log('O arquivo CourseInfo.jsx pegou nome deste item no DataBase: ');
+    console.log(imag, '\n'), console.log('');
+  };
+
+  const onDeleteCategory = () => {
+    Alert.alert('ATENÇÃO', 'Você tem certeza que quer deletar esta categoria?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        style: 'destructive',
+        onPress: async () => {
+          /* Trecho abaixo foi copiado do Supabase */
+          const { error } = await supabase
+            .from('CategoryItems')
+            .delete()
+            .eq('category_id', categoryData.id);
+
+          await supabase.from('Category').delete().eq('id', categoryData.id);
+
+          ToastAndroid.show('Category Deleted', ToastAndroid.SHORT);
+          router.replace('/(tabs)');
+        },
+      },
+    ]);
+  };
 
   return (
     <View>
@@ -47,20 +74,29 @@ export default function CourseInfo({ categoryData }) {
             {categoryData.icon}
           </Text>
         </View>
+
         <View style={styles.txtvaltotalicon}>
           <Text style={styles.txtcategoryname}>{categoryData.name}</Text>
           <Text style={styles.categorytxt}>{categoryData.CategoryItems?.length} Item</Text>
         </View>
-        <Ionicons name="trash" size={24} color="red" />
+
+        <TouchableOpacity onPress={() => onDeleteCategory()}>
+          <Ionicons name="trash" size={24} color="red" />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.txttotal}>
-        <Text style={[{fontSize: 14, fontWeight: 'bold',}, { color: percent >= 100 ? Colors.RED : Colors.BLACK     }]} >${totalCost}</Text>
+        <Text
+          style={[
+            { fontSize: 14, fontWeight: 'bold' },
+            { color: percent >= 100 ? Colors.RED : Colors.BLACK },
+          ]}>
+          ${totalCost}
+        </Text>
         <Text style={styles.txtfontvalues}>Total Budget:{categoryData.assigned_budget}</Text>
       </View>
       <View style={styles.progressbarmaincontainer}>
-        <View style={[styles.progressbainnercontainer, {width: percent +'%'}]}>
-        </View>
+        <View style={[styles.progressbainnercontainer, { width: percent + '%' }]}></View>
       </View>
     </View>
   );
@@ -102,7 +138,7 @@ const styles = StyleSheet.create({
   txtfontvalues: {
     fontSize: 14,
   },
-  txtfontvaluescost:{
+  txtfontvaluescost: {
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -113,7 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 99,
     marginTop: 10,
   },
-  progressbainnercontainer:{
+  progressbainnercontainer: {
     width: '40%',
     backgroundColor: Colors.PRIMARY,
     borderRadius: 99,
