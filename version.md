@@ -18,6 +18,7 @@ v00.16.000 - Sent data to DB, opens empty category-detail, shows ID in console
 v00.17.000 - Page with product details and progress bar
 v00.18.000 - displayed items from each group
 v00.19.000 - Add-new-Item to group items to Supabase including image
+v00.20.000 - adjust progress bar and totalcost text color
 
 
 
