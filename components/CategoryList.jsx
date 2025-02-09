@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../utils/Colors';
 import { useRouter } from 'expo-router';
+import { supabase } from '../utils/SupabaseConfig';
 
 export default function CategoryList({ categoryList }) {
 
@@ -10,12 +11,19 @@ export default function CategoryList({ categoryList }) {
        pathname: '/category-detail',
        params: {categoryId:category.id}
     })
- }
+ };
 
+ const calcTotalGastCategoryCost=(categoryItems)=>{
+  let totalGastCategoryCost=0;
+  categoryItems.forEach(item=>{
+       totalGastCategoryCost=totalGastCategoryCost+item.cost;
+  })
+  return totalGastCategoryCost;
+};
 
   return (
     <View style={styles.viewcateglis}>
-      <Text style={styles.txtcateglist}>Category Budget</Text>
+      <Text style={styles.txtcateglist}>Gastos por Categoria</Text>
 
       {/* Trecho modificado */}
       {categoryList && categoryList.length > 0 ? ( // Check if categoryList is not undefined and has items
@@ -36,7 +44,13 @@ export default function CategoryList({ categoryList }) {
                   <Text style={styles.categoryText}>{category.name}</Text>
                   <Text style={styles.itemCount}>{category?.CategoryItems?.length} Itens</Text>
                 </View>
-                <Text style={styles.txtotalgeneral}>${category.assigned_budget}</Text>
+
+
+                <Text style={styles.txtotalgeneral}>
+                ${calcTotalGastCategoryCost(category?.CategoryItems)}
+                </Text>
+
+
               </View>
             </TouchableOpacity>
           ))}
@@ -64,7 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   txtcateglist: {
-    fontSize: 25,
+    fontSize: 22,
     marginBottom: 10,
     fontWeight: 'bold',
   },
