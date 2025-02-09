@@ -1,6 +1,5 @@
 import { Link, useRouter } from 'expo-router';
-import { View, Text, StyleSheet, Button, ScrollView } from 'react-native';
-import { RefreshControl } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView, RefreshControl } from 'react-native';
 import { useEffect, useState } from 'react';
 
 import { supabase } from '../../utils/SupabaseConfig';
@@ -38,7 +37,8 @@ export default function Home() {
     const { data, error } = await supabase
       .from('Category')
       .select('*, CategoryItems(*)')
-      .eq('created_by', user.email);
+      .eq('created_by', user.email)
+      .order(['id'],{ascending:false});
 
     if (error) {
       console.log('Error in capture data');
@@ -49,6 +49,7 @@ export default function Home() {
     setCategoryList(data);
 
     data && setLoading(false);
+    console.log('Linha 52 - Dados da variavel categoryList no arquivo index.jsx: ', categoryList);
     console.log('');
   };
 
@@ -63,10 +64,10 @@ export default function Home() {
           <Header />
         </View>
 
-        <View style={styles.graphcatlist}>
-          <DonutChart />
 
-          <View>
+        <View style={styles.graphcatlist}>
+          <DonutChart categoryList={categoryList} />
+
             {/* ... */}
             {categoryList ? ( // Check if categoryList is not undefined
               <CategoryList categoryList={categoryList} />
@@ -74,8 +75,9 @@ export default function Home() {
               <Text>Loading categories...</Text>
             )}
             {/* ... */}
-          </View>
+
         </View>
+        
       </ScrollView>
 
       <Link href={'/add-new-category'} style={styles.btnaddcateg}>
