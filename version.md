@@ -21,6 +21,7 @@ v00.19.000 - Add-new-Item to group items to Supabase including image
 v00.20.000 - adjust progress bar and totalcost text color
 v00.21.000 -Implemented the onDeleteCategory method
 v00.22.000 -Implemented show total in Donut Chart
+v00.23.000 -Percentage meter implemented in Donut Chart
 
 
 
@@ -28,12 +29,18 @@ v00.22.000 -Implemented show total in Donut Chart
 FALTA INSTALAR
 
 
-Usado ICONE lupa como default
+Icone lupa como default
 https://br.freepik.com/icone/procurar_11868278#fromView=resource_detail&position=9
 
-Image details:
+
+Image Relogio - dar crédito
+"designed by xxxxxx in " freepik = link:  
+https://br.freepik.com/psd-gratuitas/magnifico-relogio-de-ouro-uma-obra-prima-do-tempo_406617806.htm#fromView=keyword&page=1&position=0&uuid=6f960900-59d1-4911-b8ad-31d364a6fd49&query=Relogio+Png
+
+Image casas details:
 https://fastly.picsum.photos/id/1068/5000/2873.jpg?hmac=r6kq62tWoTv9EdoHeHjw8wxTwhJNEfZEcwRMxWSkelY
 
+Image Fruit morango
 https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc
 
 
