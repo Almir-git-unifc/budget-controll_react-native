@@ -9,38 +9,49 @@ export default function DonutChart({ categoryList }) {
   const [values, setValues] = useState([1]);
   const [sliceColor, setSliceColor] = useState([Colors.GRAY]);
   const [totalGastExpected, setTotalGastExpected] = useState(0);
+
+  let totalPaid;
   const [HealthCost1, setHelphCost1] = useState('Despesas');
   const [HealthCost2, setHelphCost2] = useState('em dia');
+
+  const totalGastReserved = categoryList?.reduce(
+    (total, category) => total + Number(category.assigned_budget), 0
+  );
 
   useEffect(() => {
     categoryList && updateDonutChart();
   }, [categoryList]);
 
   const updateDonutChart = () => {
-    let totalEsimates = 0;
-    setSliceColor([1]);
-    setValues([Colors.GRAY]);
-    let otherCost = 0;
+    totalPaid = 0;
+
+
+    
+    setSliceColor([]);
+    setValues([]);
+    let otherCost = 0;                  /** poderia remover não funciona direito */
+
+
 
     categoryList.forEach((item, index) => {
       if (index < 4) {
         let itemTotalCost = 0;
         item.CategoryItems?.forEach((item_) => {
           itemTotalCost = itemTotalCost + item_.cost;
-          totalEsimates = totalEsimates + item_.cost;
+          totalPaid = totalPaid + item_.cost;   // Total gasto
         });
         setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[index]]);
         setValues((values) => [...values, itemTotalCost]);
       } else {
         item.CategoryItems?.forEach((item_) => {
           otherCost = otherCost + item_.cost;
-          totalEsimates = totalEsimates + item_.cost;
+          totalPaid = totalPaid + item_.cost;
         });
       }
     });
-    setTotalGastExpected(totalEsimates);
-    setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[4], Colors.GRAY]);
-    setValues((values) => [...values, otherCost, 50]);
+    setTotalGastExpected(totalPaid);  // Total pago
+    setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[4]]);
+    setValues((values) => [...values, 150]);                                    /** Atribuiu 50 para OtherCost */
   };
 
   return (
@@ -69,15 +80,23 @@ export default function DonutChart({ categoryList }) {
           <View>
             {categoryList?.map(
               (category, index) =>
-                index <= 4 && (
+                 (
+                  
+                  <View>
                   <View key={index} style={styles.stylegraphicleg}>
                     <MaterialCommunityIcons
                       name="checkbox-blank-circle"
                       size={24}
                       color={Colors.COLOR_LIST[index]}
                     />
-                    <Text>{index < 4 ? category.name : 'Other'}</Text>
+                    
+                    <Text>{category.name }</Text>
+                                       
+                    
                   </View>
+                  
+                  </View>
+                  
                 )
             )}
           </View>
@@ -86,7 +105,7 @@ export default function DonutChart({ categoryList }) {
 
 
       <View style={styles.gauge}>
-        <Text style={styles.gaugeText}>60%</Text>
+        <Text style={styles.gaugeText}>{parseInt(totalGastExpected *100/totalGastReserved)} %</Text>
       </View>
 
       <View style={styles.styleviewhealth}>
@@ -135,7 +154,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 160,
     top: '75%',
-    left: '27%',
+    left: '26%',
   },
   gaugeText: {
     backgroundColor: 'transparent',
