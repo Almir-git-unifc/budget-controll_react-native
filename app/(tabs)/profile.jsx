@@ -1,57 +1,68 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View,Text, StyleSheet, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../utils/Colors';
+import Feather from '@expo/vector-icons/Feather';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function Profile() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.back}></View>
+      <KeyboardAvoidingView>
+        <ScrollView>
+          <View style={styles.titlePage}>
+            <View style={styles.contaiheader}>
+              <Text style={styles.titlePageText}>Profile Screen</Text>
+            </View>
+          </View>
 
-      <View style={styles.banner}>
-        <View style={styles.contaiheader}>
-            <Text style={styles.bannerText}>Profile Screen</Text>
-        </View>
-      </View>
+          <View style={styles.profileDetails}>
+            <View>
+              <Image
+                source={{
+                  uri: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg',
+                }}
+                style={styles.imageSize}
+              />
+            </View>
 
-      <View style={styles.profileDetails}>
-        <View>
-          <Image
-            source={{
-              uri: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg',
-            }}
-            style={styles.imageSize}
-          />
-        </View>
+            <View style={styles.posIcon}>
+              <TouchableOpacity style={styles.camCont}>
+                <Ionicons name="camera-outline" size={25} color="white" />
+              </TouchableOpacity>
+            </View>
+          </View>
 
-        <View style={styles.posIcon}>
-          <TouchableOpacity style={styles.camCont}>
-            <Ionicons name="camera-outline" size={25} color="white" />
+          <View style={styles.profileData}>
+            <View style={styles.textInput}>
+              <Feather name="user" size={24} color={Colors.GRAY} />
+              <TextInput placeholder="Name">Silverio</TextInput>
+            </View>
+
+            <View style={styles.textInput}>
+              <Feather name="mail" size={24} color={Colors.GRAY} />
+              <TextInput placeholder="Email">silva&silva@gmail.com</TextInput>
+            </View>
+
+            <View style={styles.textInput}>
+              <MaterialIcons name="engineering" size={24} color={Colors.GRAY} />
+              <TextInput placeholder="Profession: Danger"></TextInput>
+            </View>
+
+            <View style={styles.textInput}>
+              <Feather name="phone-call" size={24} color={Colors.GRAY} />
+              <TextInput placeholder="Fone Number">11-987654321</TextInput>
+            </View>
+          </View>
+
+          <TouchableOpacity style={styles.buttonfooter}>
+            <Text style={styles.buttonText}>Update Profile</Text>
           </TouchableOpacity>
-        </View>
-      </View>
 
-      <View style={styles.profileData}>
-        <Text style={styles.posTextSch}>School</Text>
-        <TextInput style={styles.textInput}>PUC Minas</TextInput>
-        <Text style={styles.posTextEmail}>Email Address</Text>
-        <TextInput style={styles.textInput}>silva&silva@gmail.com</TextInput>
-        <Text style={styles.posTextName}>Name</Text>
-        <TextInput style={styles.textInput}>Silva</TextInput>
-        <Text style={styles.posTextNickName}>Nick Name</Text>
-        <TextInput style={styles.textInput}>A.silv</TextInput>
-        <Text style={styles.posTextEmergency}>Emergency Number</Text>
-        <TextInput style={styles.textInput}>11-987654321</TextInput>
-      </View>
-
-      <View style={styles.footer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Update Profile</Text>
-        </TouchableOpacity>
-      </View>
-
-      <StatusBar style="auto" />
+          <StatusBar style="auto" />
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -63,19 +74,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.PRIMARY,
   },
   contaiheader: {
-    backgroundColor:Colors.PRIMARY,
-    height:150
+    backgroundColor: Colors.PRIMARY,
+    height: 70,
   },
-  banner: {
+  titlePage: {
     flex: 0.5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     width: '100%',
     height: '10%',
-    marginBottom: 3,
-    
+    marginBottom: 5,
   },
-  bannerText: {
+  titlePageText: {
     fontSize: 20,
     marginHorizontal: 100,
     color: Colors.WHITE,
@@ -85,8 +95,9 @@ const styles = StyleSheet.create({
     flex: 3,
     alignItems: 'center',
     position: 'relative',
-    paddingTop: 30,
-    backgroundColor: 'rgb(255, 255, 255)',
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: Colors.WHITE,
     borderRadius: 15,
   },
   imageSize: {
@@ -100,82 +111,41 @@ const styles = StyleSheet.create({
     right: 90,
   },
   camCont: {
-    backgroundColor: 'rgb(39, 180, 228)',
+    backgroundColor: Colors.PRIMARY,
     borderRadius: 10,
   },
   profileData: {
     flex: 5,
-    backgroundColor: 'rgb(255, 255, 255)',
+    backgroundColor: Colors.WHITE,
     position: 'relative',
     justifyContent: 'center',
     padding: 20,
-    marginTop: 20,
+    marginTop: 15,
     borderRadius: 15,
-  },
-  posTextSch: {
-    position: 'absolute',
-    top: 0,
-    left: 35,
-    backgroundColor: 'rgb(255, 255, 255)',
-    zIndex: 1,
-  },
-  posTextEmail: {
-    position: 'relative',
-    top: 8,
-    left: 15,
-    backgroundColor: 'rgb(255, 255, 255)',
-    zIndex: 1,
-  },
-  posTextName: {
-    position: 'relative',
-    top: 8,
-    left: 15,
-    backgroundColor: 'rgb(255, 255, 255)',
-    zIndex: 1,
-  },
-  posTextNickName: {
-    position: 'relative',
-    top: 8,
-    left: 15,
-    backgroundColor: 'rgb(255, 255, 255)',
-    zIndex: 1,
-  },
-  posTextEmergency: {
-    position: 'relative',
-    top: 8,
-    left: 16,
-    backgroundColor: 'rgb(255, 255, 255)',
-    zIndex: 1,
   },
   textInput: {
-    height: 50,
-    fontSize: 15,
+    padding: 10,
     borderWidth: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10,
+    borderColor: Colors.GRAY,
     borderRadius: 10,
-    borderTopWidth: 0,
-    paddingLeft: 10,
-    borderStyle: 'solid',
-    borderColor: 'rgb(200, 206, 210)',
+    marginTop: 10,
   },
-  footer: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgb(255, 255, 255)',
-    borderRadius: 15,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  button: {
+  buttonfooter: {
+    display: 'flex',
     height: 55,
-    width: 250,
-    borderRadius: 75,
-    backgroundColor: 'rgb(39, 180, 228)',
+    borderRadius: 10,
+    backgroundColor: Colors.WHITE,
+    marginTop: 10,
+    marginBottom: 10,
   },
   buttonText: {
     alignSelf: 'center',
-    color: 'rgb(255, 255, 255)',
+    color: Colors.PRIMARY,
     padding: 15,
     fontSize: 17,
+    fontWeight: 'bold',
   },
 });

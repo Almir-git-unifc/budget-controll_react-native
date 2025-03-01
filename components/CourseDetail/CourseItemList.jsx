@@ -1,4 +1,4 @@
-import { View,Text, StyleSheet, TouchableOpacity, ToastAndroid, Linking, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ToastAndroid, Linking, Image, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Colors from '../../utils/Colors';
 import { EvilIcons } from '@expo/vector-icons';
@@ -27,11 +27,10 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
         <View style={{ marginTop: 15 }}>
           {categoryData?.CategoryItems?.length > 0 ? (
             categoryData?.CategoryItems?.map((item, index) => (
-              <>
-                <TouchableOpacity
-                  key={index}
-                  style={styles.itemContainer}
-                  onPress={() => setExpandItem(index)}>
+              <View key={index}>
+                
+                {/* Substituí o fragmento por uma View */}
+                <TouchableOpacity style={styles.itemContainer} onPress={() => setExpandItem(index)}>
                   <Image source={{ uri: item.image }} style={styles.imageitem} />
                   <View style={{ flex: 1, marginLeft: 10 }}>
                     <Text style={styles.nameitem}>{item.name}</Text>
@@ -41,7 +40,6 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
                   </View>
                   <Text style={styles.custitem}>${item.cost}</Text>
                 </TouchableOpacity>
-
                 {explandItem == index && (
                   <View style={styles.actionItemContainer}>
                     <TouchableOpacity onPress={() => onDeleteItem(item.index)}>
@@ -57,7 +55,7 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
                   <View
                     style={{ borderWidth: 0.5, marginTop: 10, borderColor: Colors.GRAY }}></View>
                 )}
-              </>
+              </View>
             ))
           ) : (
             <Text style={styles.noItemText}>No Item Found</Text>

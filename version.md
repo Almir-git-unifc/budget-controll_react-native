@@ -19,9 +19,10 @@ v00.17.000 - Page with product details and progress bar
 v00.18.000 - displayed items from each group
 v00.19.000 - Add-new-Item to group items to Supabase including image
 v00.20.000 - adjust progress bar and totalcost text color
-v00.21.000 -Implemented the onDeleteCategory method
-v00.22.000 -Implemented show total in Donut Chart
-v00.23.000 -Percentage meter implemented in Donut Chart
+v00.21.000 - Implemented the onDeleteCategory method
+v00.22.000 - Implemented show total in Donut Chart
+v00.23.000 - Percentage meter implemented in Donut Chart
+v00.24.000 - implemented the Estatica Profile Page
 
 
 
