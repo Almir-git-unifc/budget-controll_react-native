@@ -15,7 +15,8 @@ export default function DonutChart({ categoryList }) {
   const [HealthCost2, setHelphCost2] = useState('em dia');
 
   const totalGastReserved = categoryList?.reduce(
-    (total, category) => total + Number(category.assigned_budget), 0
+    (total, category) => total + Number(category.assigned_budget),
+    0
   );
 
   useEffect(() => {
@@ -25,20 +26,16 @@ export default function DonutChart({ categoryList }) {
   const updateDonutChart = () => {
     totalPaid = 0;
 
-
-    
     setSliceColor([]);
     setValues([]);
-    let otherCost = 0;                  /** poderia remover não funciona direito */
-
-
+    let otherCost = 0; /** poderia remover não funciona direito */
 
     categoryList.forEach((item, index) => {
       if (index < 4) {
         let itemTotalCost = 0;
         item.CategoryItems?.forEach((item_) => {
           itemTotalCost = itemTotalCost + item_.cost;
-          totalPaid = totalPaid + item_.cost;   // Total gasto
+          totalPaid = totalPaid + item_.cost; // Total gasto
         });
         setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[index]]);
         setValues((values) => [...values, itemTotalCost]);
@@ -49,9 +46,9 @@ export default function DonutChart({ categoryList }) {
         });
       }
     });
-    setTotalGastExpected(totalPaid);  // Total pago
+    setTotalGastExpected(totalPaid); // Total pago
     setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[4]]);
-    setValues((values) => [...values, 150]);                                    /** Atribuiu 50 para OtherCost */
+    setValues((values) => [...values, 150]); /** Atribuiu 50 para OtherCost */
   };
 
   return (
@@ -60,7 +57,6 @@ export default function DonutChart({ categoryList }) {
         Total de Gastos : <Text style={{ fontWeight: 'bold' }}>${totalGastExpected}</Text>
       </Text>
       <View style={styles.styledisgraftitle}>
-
         {categoryList?.length > 0 && (
           <PieChart
             widthAndHeight={widthAndHeight}
@@ -78,34 +74,26 @@ export default function DonutChart({ categoryList }) {
           </View>
         ) : (
           <View>
-            {categoryList?.map(
-              (category, index) =>
-                 (
-                  
-                  <View>
-                  <View key={index} style={styles.stylegraphicleg}>
-                    <MaterialCommunityIcons
-                      name="checkbox-blank-circle"
-                      size={24}
-                      color={Colors.COLOR_LIST[index]}
-                    />
-                    
-                    <Text>{category.name }</Text>
-                                       
-                    
-                  </View>
-                  
-                  </View>
-                  
-                )
-            )}
+            {categoryList?.map((category, index) => (              
+                <View key={index} >                 
+                 <View style={styles.stylegraphicleg}>
+                  <MaterialCommunityIcons
+                    name="checkbox-blank-circle"
+                    size={24}
+                    color={Colors.COLOR_LIST[index]}
+                  />
+                  <Text>{category.name}</Text>
+                </View>
+              </View>
+            ))}
           </View>
         )}
       </View>
 
-
       <View style={styles.gauge}>
-        <Text style={styles.gaugeText}>{parseInt(totalGastExpected *100/totalGastReserved)} %</Text>
+        <Text style={styles.gaugeText}>
+          {parseInt((totalGastExpected * 100) / totalGastReserved)} %
+        </Text>
       </View>
 
       <View style={styles.styleviewhealth}>
