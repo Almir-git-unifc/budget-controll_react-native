@@ -15,8 +15,7 @@ export default function DonutChart({ categoryList }) {
   const [HealthCost2, setHelphCost2] = useState('em dia');
 
   const totalGastReserved = categoryList?.reduce(
-    (total, category) => total + Number(category.assigned_budget),
-    0
+    (total, category) => total + Number(category.assigned_budget), 0
   );
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function DonutChart({ categoryList }) {
 
     setSliceColor([]);
     setValues([]);
-    let otherCost = 0; /** poderia remover não funciona direito */
+    let otherCost = 0; /** Será usado para somar valor de categorias além de 4. poderia remover não funciona direito */
 
     categoryList.forEach((item, index) => {
       if (index < 4) {
@@ -40,15 +39,16 @@ export default function DonutChart({ categoryList }) {
         setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[index]]);
         setValues((values) => [...values, itemTotalCost]);
       } else {
-        item.CategoryItems?.forEach((item_) => {
+        item.CategoryItems?.forEach( (item_) => {
           otherCost = otherCost + item_.cost;
           totalPaid = totalPaid + item_.cost;
         });
       }
     });
+
     setTotalGastExpected(totalPaid); // Total pago
     setSliceColor((sliceColor) => [...sliceColor, Colors.COLOR_LIST[4]]);
-    setValues((values) => [...values, 150]); /** Atribuiu 50 para OtherCost */
+    setValues((values) => [...values, otherCost]); /** Atribuiu 50 para OtherCost */
   };
 
   return (
@@ -74,15 +74,16 @@ export default function DonutChart({ categoryList }) {
           </View>
         ) : (
           <View>
-            {categoryList?.map((category, index) => (              
+            {categoryList?.map((category, index) => index<=4&&(              
                 <View key={index} >                 
                  <View style={styles.stylegraphicleg}>
                   <MaterialCommunityIcons
                     name="checkbox-blank-circle"
                     size={24}
+                    /** Abaixo a cor do label de categoria */
                     color={Colors.COLOR_LIST[index]}
                   />
-                  <Text>{category.name}</Text>
+                  <Text>{index<4?category.name:'Others Group'}</Text>
                 </View>
               </View>
             ))}
