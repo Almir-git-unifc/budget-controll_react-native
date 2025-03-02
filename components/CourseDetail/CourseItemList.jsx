@@ -19,6 +19,7 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
       Linking.openURL(url);
     }
   };
+   
   return (
     <ScrollView>
       <View style={styles.containgera}>
@@ -27,6 +28,7 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
         <View style={{ marginTop: 15 }}>
           {categoryData?.CategoryItems?.length > 0 ? (
             categoryData?.CategoryItems?.map((item, index) => (
+              
               <View key={index}>
                 
                 {/* Substituí o fragmento por uma View */}
@@ -40,9 +42,10 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
                   </View>
                   <Text style={styles.custitem}>${item.cost}</Text>
                 </TouchableOpacity>
+                
                 {explandItem == index && (
                   <View style={styles.actionItemContainer}>
-                    <TouchableOpacity onPress={() => onDeleteItem(item.index)}>
+                    <TouchableOpacity onPress={() => onDeleteItem(item.id)}>
                       <EvilIcons name="trash" size={34} color="red" />
                     </TouchableOpacity>
 

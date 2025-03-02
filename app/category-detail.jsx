@@ -8,6 +8,7 @@ import CourseItemList from '../components/CourseDetail/CourseItemList';
 import Colors from '../utils/Colors';
 import { Link, useRouter } from 'expo-router';
 
+
 export default function CategoryDetails() {
   const { categoryId } = useLocalSearchParams();
   const [categoryData, setCategoryData] = useState([]);
@@ -29,11 +30,15 @@ export default function CategoryDetails() {
 
   return (
     <View style={styles.viewcatedetail}>
-      <TouchableOpacity onPress={() => router.back()}>
+
+      <TouchableOpacity onPress={() => router.replace('/(tabs)')}>
         <Ionicons name="arrow-back-circle" size={44} color="black" />
       </TouchableOpacity>
+
       <CourseInfo categoryData={categoryData} />
-      <CourseItemList categoryData={categoryData} />
+      <CourseItemList categoryData={categoryData}           
+          setUpdateRecord={()=>getCategoryDetail()}
+      />
 
       <Link
         href={{

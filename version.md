@@ -23,6 +23,8 @@ v00.21.000 - Implemented the onDeleteCategory method
 v00.22.000 - Implemented show total in Donut Chart
 v00.23.000 - Percentage meter implemented in Donut Chart
 v00.24.000 - implemented the Estatica Profile Page
+v00.25.000 - created a group of categories above 4 in Donutchart
+v00.26.000 - implemented delete item button and open url
 
 
 
