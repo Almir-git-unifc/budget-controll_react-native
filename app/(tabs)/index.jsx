@@ -1,6 +1,7 @@
 import { Link, useRouter } from 'expo-router';
 import { View, Text, StyleSheet, Button, ScrollView, RefreshControl } from 'react-native';
 import { useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 import { supabase } from '../../utils/SupabaseConfig';
 import { client } from '../../utils/KindeConfig';
@@ -77,7 +78,7 @@ export default function Home() {
             {/* ... */}
 
         </View>
-        
+        <StatusBar style="auto" />
       </ScrollView>
 
       <Link href={'/add-new-category'} style={styles.btnaddcateg}>
