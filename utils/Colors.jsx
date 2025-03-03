@@ -9,5 +9,6 @@ export default {
   ORANGE:'#FF7D4F',
   BLUE:'#4F75FE',
   AMARELO: '#d6cf0d',
+  LIGHT_GRAY: '#D3D3D3',
   COLOR_LIST:['#13C38B','#9F3CFE','#d6cf0d','#4F75FE','#FF555D', '#FFF'],
 };
