@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { client } from '../utils/KindeConfig';
 
 import Colors from '../utils/Colors.jsx';
-import { Ionicons } from '@expo/vector-icons';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { useFonts } from 'expo-font';
 
 
 export default function Header() {
@@ -23,27 +23,19 @@ export default function Header() {
 
     return (
         <View style={styles.stylaligntext}  >            
-            <Image
-                source={user?.picture ? { uri: user.picture } : require('../assets/images/abs_545904.png')}
-                style={styles.loginBg}
-            />
+            <MaterialCommunityIcons name="car-brake-abs" size={48} color={Colors.ORANGE} />
             <View style={styles.stylaligwelconotico}  >
-                <View>
+                <View style={styles.stylTxtWelcome}>
                     <Text style={styles.styltxtheader} >Welcome,</Text>
                     <Text style={styles.styluserheader} >{user ?.given_name}</Text>
                 </View>
-                <Ionicons name="notifications" size={24} color="white" />
+                <FontAwesome5 name="money-check-alt" size={24} color="white" />
             </View>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
-    stylimageheader: {
-        width: 50,
-        height: 50,
-        borderRadius: 99,
-    },
     styltxtheader: {
         color: Colors.WHITE,
         fontSize: 16,
@@ -52,6 +44,9 @@ const styles = StyleSheet.create({
         color: Colors.WHITE,
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    stylTxtWelcome:{
+        paddingLeft: 10,
     },
     stylaligwelconotico: {
         display: 'flex',

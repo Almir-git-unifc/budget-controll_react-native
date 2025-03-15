@@ -152,10 +152,7 @@ export default function AddNewCategoryItem() {
   );
 }
 const styles = StyleSheet.create({
-  addnewcategory: {
-    marginLeft: 20,
-    marginTop: 50,
-  },
+
   addimage: {
     width: 150,
     height: 150,

@@ -1,5 +1,5 @@
 import { Link, useRouter } from 'expo-router';
-import { View, Text, StyleSheet, Button, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, RefreshControl, Image } from 'react-native';
 import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 
@@ -14,10 +14,18 @@ import Colors from '../../utils/Colors.jsx';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { useContext } from 'react';
+import PersonaContext from '../../PersonaContext.jsx';
+
 export default function Home() {
   const router = useRouter();
   const [categoryList, setCategoryList] = useState();
   const [loading, setLoading] = useState(false);
+
+  const { setUserContext } = useContext(PersonaContext);
+  const { setFamilyContext} =  useContext(PersonaContext);
+  const { setEmailContext} =  useContext(PersonaContext);
+  const { setImageContext} =  useContext(PersonaContext);
 
   useEffect(() => {
     getCategoryLyst();
@@ -35,6 +43,23 @@ export default function Home() {
     setLoading(true);
     const user = await client.getUserDetails();
     console.log('email do usuário Kinde eh: ', user.email);
+    console.log('nome given_name do usuário Kinde eh: ', user.given_name);
+    console.log('sobrenome family_name do usuário Kinde eh: ', user.family_name);
+
+    if (user && user.profile_picture) {
+      const profilePictureUrl = user.profile_picture;
+      // Use profilePictureUrl para exibir a imagem de perfil
+      console.log('OK a imagem do perfil do usuário Kinde foi obtida');
+    } else {
+      console.log('imagem do perfil do usuário Kinde NÃO está disponível');
+    }
+
+    /* enviando valores ap contexto */
+    setUserContext(user.given_name);
+    setFamilyContext(user.family_name);
+    setEmailContext(user.email);
+
+
     const { data, error } = await supabase
       .from('Category')
       .select('*, CategoryItems(*)')
@@ -64,7 +89,6 @@ export default function Home() {
         <View style={styles.container}>
           <Header />
         </View>
-
 
         <View style={styles.graphcatlist}>
           <DonutChart categoryList={categoryList} />

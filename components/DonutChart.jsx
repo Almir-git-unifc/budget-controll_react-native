@@ -4,15 +4,21 @@ import { useState, useEffect } from 'react';
 import Colors from '../utils/Colors.jsx';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import { useContext } from 'react';
+import PersonaContext from '../PersonaContext.jsx';
+
 export default function DonutChart({ categoryList }) {
   const widthAndHeight = 150;
   const [values, setValues] = useState([1]);
   const [sliceColor, setSliceColor] = useState([Colors.GRAY]);
   const [totalGastExpected, setTotalGastExpected] = useState(0);
 
+  const { setTotalGastExpectedContext } = useContext(PersonaContext);
+  const { setTotalGastReservedContext } = useContext(PersonaContext);
+
   let totalPaid;
-  const [HealthCost1, setHelphCost1] = useState('Despesas');
-  const [HealthCost2, setHelphCost2] = useState('em dia');
+  const [HealthCost1, setHelphCost1] = useState('Percent');
+  const [HealthCost2, setHelphCost2] = useState('expenses');
 
   const totalGastReserved = categoryList?.reduce(
     (total, category) => total + Number(category.assigned_budget), 0
@@ -20,7 +26,9 @@ export default function DonutChart({ categoryList }) {
 
   useEffect(() => {
     categoryList && updateDonutChart();
-  }, [categoryList]);
+    setTotalGastExpectedContext(totalGastExpected);
+    setTotalGastReservedContext(totalGastReserved);
+  }, [categoryList, totalGastExpected, totalGastReserved, setTotalGastExpectedContext, setTotalGastReservedContext]);
 
   const updateDonutChart = () => {
     totalPaid = 0;
@@ -54,7 +62,7 @@ export default function DonutChart({ categoryList }) {
   return (
     <View style={styles.stylegraphic}>
       <Text style={styles.styletxtgraphic}>
-        Total de Gastos : <Text style={{ fontWeight: 'bold' }}>${totalGastExpected}</Text>
+         Total Expenses : <Text style={{ fontWeight: 'bold' }}>${totalGastExpected}</Text>
       </Text>
       <View style={styles.styledisgraftitle}>
         {categoryList?.length > 0 && (
