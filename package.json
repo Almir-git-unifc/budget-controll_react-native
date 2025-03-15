@@ -41,6 +41,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.7",
+    "react-native-android-back-button": "^0.3.0",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-get-random-values": "^1.11.0",
     "react-native-pie": "^1.1.2",
@@ -72,6 +73,10 @@
     "install": {
       "exclude": [
         "react-native-safe-area-context"
+      ],
+      "permissions": [
+        "CAMERA",
+        "MEDIA_LIBRARY"
       ]
     }
   },

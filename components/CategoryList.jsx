@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../utils/Colors';
 import { useRouter } from 'expo-router';
-import { supabase } from '../utils/SupabaseConfig';
+
 
 export default function CategoryList({ categoryList }) {
 
@@ -23,7 +23,7 @@ export default function CategoryList({ categoryList }) {
 
   return (
     <View style={styles.viewcateglis}>
-      <Text style={styles.txtcateglist}>Gastos por Categoria</Text>
+      <Text style={styles.txtcateglist}>Payments by Category</Text>
 
       {/* Trecho modificado */}
       {categoryList && categoryList.length > 0 ? ( // Check if categoryList is not undefined and has items
