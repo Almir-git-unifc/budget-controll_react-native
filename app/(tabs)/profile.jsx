@@ -161,17 +161,17 @@ export default function Profile() {
 
           </View>
           <View style={styles.profilSummary}>
-          <View style={styles.txttotal}>
+            <View style={styles.txttotal}>
               <Text style={styles.txtfontvalues}>{totalGastExpectedContext}</Text>
               <Text style={styles.txtfontvalues}>{totalGastReservedContext}</Text>
-          </View>
-          <View style={styles.progressbarmaincontainer}>
+            </View>
+            <View style={styles.progressbarmaincontainer}>
               <View style={[ styles.progressbainnercontainer, { 
                 width: `${percentage}%`,
                 backgroundColor: percentage > 98 ? Colors.RED_DEBT : Colors.BLUE,
                 },]}>
               </View>
-          </View>
+            </View>
           </View>
 
           <StatusBar style="auto" />

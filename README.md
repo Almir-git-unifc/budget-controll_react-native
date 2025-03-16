@@ -25,7 +25,7 @@ Description: An Account Control Android app, Full Stack using React Native, JS, 
                      ==================================================
                       
 
-![testSqliteApi](https://github.com/Almir-git-unifc/budget-controll_react-native/blob/main/zbudgetApp.png)
+![testSqliteApi](https://github.com/Almir-git-unifc/budget-controll_react-native/blob/main/zbudgeApp.png)
 
 
 --------------------------------------------------------------------------------------

@@ -1,11 +1,9 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs, usePathname } from 'expo-router';
 
-
 import { useRouter } from 'expo-router';
 import { BackHandler, Alert } from "react-native";
 import {useEffect, useState } from 'react';
-
 
 import Colors from '../../utils/Colors';
 
