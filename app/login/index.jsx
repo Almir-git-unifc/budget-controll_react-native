@@ -43,8 +43,8 @@ export default function LoginScreen() {
           <Text style={{ textAlign: 'center', color: Colors.PRIMARY }}>Login/Signup</Text>
         </TouchableOpacity>
 
-        <Text style={{ fontSize: 11, color: Colors.GRAY, marginTop: 10 }}>
-          * Ao fazer login/cadastrar você concorda com nossos termos e condições
+        <Text style={styles.txtadvlogin}>
+          * By loging or SignUp you will accept our terms and conditions
         </Text>
       </View>
     </View>
@@ -84,6 +84,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.WHITE,
     marginTop: 20,
+  },
+
+  txtadvlogin:{
+    fontSize: 10, 
+    color: Colors.GRAY, 
+    marginTop: 10, 
+    textAlign: 'center',
   },
   txtBtnLogin: {
     backgroundColor: Colors.WHITE,
