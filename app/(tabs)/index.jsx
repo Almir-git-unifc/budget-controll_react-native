@@ -5,12 +5,11 @@ import { StatusBar } from 'expo-status-bar';
 
 import { supabase } from '../../utils/SupabaseConfig';
 import { client } from '../../utils/KindeConfig';
+import Colors from '../../utils/Colors.jsx';
 
 import Header from '../../components/Header';
 import DonutChart from '../../components/DonutChart';
 import CategoryList from '../../components/CategoryList.jsx';
-
-import Colors from '../../utils/Colors.jsx';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -25,11 +24,11 @@ export default function Home() {
   const { setUserContext } = useContext(PersonaContext);
   const { setFamilyContext} =  useContext(PersonaContext);
   const { setEmailContext} =  useContext(PersonaContext);
-  const { setImageContext} =  useContext(PersonaContext);
 
   useEffect(() => {
     getCategoryLyst();
   }, []);
+
 
   const handleLogout = async () => {
     const loggedOut = await client.logout();
@@ -114,6 +113,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   gera: {
+    backgroundColor: Colors.PRIMARY,
     marginTop: 30,
     flex: 1,
   },
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
-    backgroundColor: Colors.PRIMARY,
+    
     height: 150,
   },
   paragraph: {
