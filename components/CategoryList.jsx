@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   txtcateglist: {
-    fontSize: 22,
+    color: Colors.WHITE,
+    fontSize: 20,
     marginBottom: 10,
     fontWeight: 'bold',
   },
