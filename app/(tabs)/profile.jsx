@@ -161,9 +161,10 @@ export default function Profile() {
 
           </View>
           <View style={styles.profilSummary}>
+            <Text style={styles.txttitlebalance}>General balance</Text>
             <View style={styles.txttotal}>
-              <Text style={styles.txtfontvalues}>{totalGastExpectedContext}</Text>
-              <Text style={styles.txtfontvalues}>{totalGastReservedContext}</Text>
+              <Text style={styles.txtfontvalues}>Income: {totalGastExpectedContext}</Text>
+              <Text style={styles.txtfontvalues}>Expenses: {totalGastReservedContext}</Text>
             </View>
             <View style={styles.progressbarmaincontainer}>
               <View style={[ styles.progressbainnercontainer, { 
@@ -326,7 +327,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     justifyContent: 'center',
     padding: 20,
-    marginTop: 20,
+    marginTop: 15,
     borderRadius: 15,
     marginBottom: 10,
   },
@@ -339,15 +340,27 @@ const styles = StyleSheet.create({
     paddingRight:20,
     paddingTop:5,
     paddingBottom: 15,
+    marginTop: 5,
+    marginBottom: 10,
     borderRadius: 15,
-    marginTop: 10,
+  },
+  txtfontvalues:{
+    fontSize: 13,
+    //color: Colors.WHITE,
+    // fontWeight: 'bold',
+  },
+  txttitlebalance:{
+    fontSize: 14,
+    color: Colors.PRIMARY,
+    fontWeight: 'bold',
+    paddingTop: 10,
   },
   buttonfooter: {
     display: 'flex',
     height: 55,
     borderRadius: 10,
     backgroundColor: Colors.WHITE,
-    marginTop: 25,
+    marginTop: 20,
   },
   buttonText: {
     alignSelf: 'center',
@@ -389,6 +402,6 @@ const styles = StyleSheet.create({
       display: 'flex', 
       flexDirection: 'row', 
       justifyContent: 'space-between',
-      marginTop: 30,
+      marginTop: 15,
     },
 });
