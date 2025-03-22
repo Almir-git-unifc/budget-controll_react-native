@@ -32,7 +32,7 @@ export default function LoginScreen() {
 
   return (
     <View style={{ display: 'flex', alignItems: 'center' }}>
-      <Text style={styles.loginScreen}>Tela de Login</Text>
+      <Text style={styles.loginScreen}>Login Screen</Text>
       <Image source={require('../../assets/images/loginbg.png')} style={styles.loginBg} />
       <View style={styles.viewIntern}>
         <Text style={styles.txtPersPlan}>Personal Budger Planner</Text>
