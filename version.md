@@ -30,6 +30,10 @@ v00.28.000 - implemented History Screen
 v00.29.000 - implemented BackHandler button
 v00.30.000 - fix BackHandler button code
 v00.31.000 - update Profile Screen
+v00.32.000 - update README.md
+v00.33.000 - updated the list of Technologies and features in the README.md file"
+v00.34.000 - update with improvements to the readme file text.
+v00.35.000 - update readme file and version file.
 
 
 
