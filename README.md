@@ -38,7 +38,7 @@ In this Mobile Budge project we added
 - Profile page with expense summary, user's social login info and an image or photograph.
 - static images provided by online graphics resource platform
 
-These were some differences, in relation to the original project found on Youtube with the title """React Native Full Stack App | React Native Budget Planner App | | Expo, Supabase, Kinde"""
+These were some differences, in relation to the original project found on Youtube previously developed by TubeGuruji with the title """React Native Full Stack App | React Native Budget Planner App | | Expo, Supabase, Kinde"""
 
 
 &nbsp;
@@ -131,8 +131,8 @@ To clone and run this application, you'll need Git, Node.js v20.03 or higher + n
 ```
 
 
-### The authenticator will open and ask for your email.'
-### It will then ask for the code sent to your email.
+#### The authenticator will open and ask for your email.
+#### It will then ask for the code sent to your email.
 
 &nbsp;
 
