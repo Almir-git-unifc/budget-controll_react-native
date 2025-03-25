@@ -32,40 +32,6 @@ v00.30.000 - fix BackHandler button code
 v00.31.000 - update Profile Screen
 v00.32.000 - update README.md
 v00.33.000 - updated the list of Technologies and features in the README.md file"
-v00.34.000 - update with improvements to the readme file text.
-v00.35.000 - update readme file and version file.
-
-
-
-
-FALTA INSTALAR
-
-
-Icone lupa como default
-https://br.freepik.com/icone/procurar_11868278#fromView=resource_detail&position=9
-
-
-Image Relogio - dar crédito
-"designed by xxxxxx in " freepik = link:  
-https://br.freepik.com/psd-gratuitas/magnifico-relogio-de-ouro-uma-obra-prima-do-tempo_406617806.htm#fromView=keyword&page=1&position=0&uuid=6f960900-59d1-4911-b8ad-31d364a6fd49&query=Relogio+Png
-
-Image casas details:
-https://fastly.picsum.photos/id/1068/5000/2873.jpg?hmac=r6kq62tWoTv9EdoHeHjw8wxTwhJNEfZEcwRMxWSkelY
-
-Image Fruit morango
-https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc
-
-
-
-Fonte aula: https://www.youtube.com/watch?v=bpP7PKuEjgI
-
-Fonte consulta e apoio: https://github.com/rrs301/budget-planner-react-native-app
-
-
-Study of Description:
-Expense tracker built with React Native Expo  49
-Android app that helps you to easily track your expenses 32
-
-
-Framework: Expo 51
-Database: Supabase
+v00.34.000 - updated with improvements to the readme file text.
+v00.35.000 - updated readme file and version file.
+v00.36.000 - updated readme file with status and keywords.

@@ -7,14 +7,14 @@ Mobile App written in React Native using Expo to control expenses
 
  
 <h3 align="center"> 
-     STATUS: 🚧  React VITE 🚀 App under construction ...  🚧 
+     STATUS: 🔔 React Native 🚀 App: Finished ... 🎯  
 </h3>
 
 
                      ==================================================
                       
 
-![testSqliteApi](https://github.com/Almir-git-unifc/budget-controll_react-native/blob/main/zbudgeApp.png)
+![imageApp](https://github.com/Almir-git-unifc/budget-controll_react-native/blob/main/zbudgeApp.png)
 
 
 --------------------------------------------------------------------------------------
@@ -37,6 +37,7 @@ In this Mobile Budge project we added
 - a History page with weekly data on flatlist.
 - Profile page with expense summary, user's social login info and an image or photograph.
 - static images provided by online graphics resource platform
+- Standard back button implemented with BackHandler to confirm exit from the app
 
 These were some differences, in relation to the original project found on Youtube previously developed by TubeGuruji with the title """React Native Full Stack App | React Native Budget Planner App | | Expo, Supabase, Kinde"""
 
