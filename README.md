@@ -55,11 +55,11 @@ These were some differences, in relation to the original project found on Youtub
 # Technologies <a name = "Technologies"></a>
 - JavaScript Full Stack
 - React Native, Cross-platform mobile development
-- Supabase, Backend-as-a-Service (BaaS) that hosts PostgreSQL database
+- Supabase, Backend-as-a-Service (Backend/BaaS) that hosts PostgreSQL database
 - Social Authentication using Kinde (robust and scalable authentication)
 - Expo 52, framework to development mobile cross-platform, and server simulator
-- ImagePicker lib to select avatar image
-- Context API, manages the global state of the app, passing data directly to the target component.
+- ImagePicker, Native Integrations with Expo (Camera, Image Picker), lib to select avatar image
+- Context API for application state management, passing data directly to the target component.
 - CSS-IN-JS (inline)
 
 
